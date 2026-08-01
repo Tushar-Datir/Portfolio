@@ -212,7 +212,8 @@ section{position:relative;z-index:1;padding:100px 20px}
 /* ══════════════════════════════════════════════════
    SKILLS – 3D rotating cubes + bars
    ══════════════════════════════════════════════════ */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:30px}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:30px}
+@media(max-width:768px){.skills-grid{grid-template-columns:1fr}}
 .skill-category{
   background:var(--bg-card);border:1px solid rgba(0,240,255,.1);
   border-radius:18px;padding:30px;
@@ -239,6 +240,13 @@ section{position:relative;z-index:1;padding:100px 20px}
   background:linear-gradient(90deg,var(--primary),var(--secondary));
   width:0;transition:width 1.5s cubic-bezier(.23,1,.32,1);
   box-shadow:0 0 12px rgba(0,240,255,.4);
+}
+.skill-category:has(.skill-tags){display:flex;flex-direction:column}
+.skill-tags{display:flex;flex-wrap:wrap;align-content:center;gap:10px;flex:1}
+.skill-tags span{
+  padding:6px 14px;border-radius:20px;font-size:.78rem;font-weight:500;
+  background:rgba(0,240,255,.06);border:1px solid rgba(0,240,255,.14);
+  color:var(--text);
 }
 
 /* ══════════════════════════════════════════════════
@@ -280,7 +288,8 @@ section{position:relative;z-index:1;padding:100px 20px}
 /* ══════════════════════════════════════════════════
    PROJECTS – 3D flip cards
    ══════════════════════════════════════════════════ */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:30px}
+.projects-grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px}
+.project-card-wrapper{flex:1 1 330px;max-width:380px}
 .project-card-wrapper{perspective:1200px;height:380px}
 .project-card{
   position:relative;width:100%;height:100%;
@@ -359,11 +368,16 @@ section{position:relative;z-index:1;padding:100px 20px}
 }
 .edu-card h3{font-size:1rem;font-weight:700;margin-bottom:6px}
 .edu-card p{font-size:.85rem;color:var(--text-muted)}
+.edu-card .cgpa{
+  display:inline-block;margin-top:10px;padding:4px 12px;border-radius:20px;
+  background:rgba(0,240,255,.08);border:1px solid rgba(0,240,255,.15);
+  color:var(--primary);font-size:.78rem;font-weight:600;
+}
 
 /* ══════════════════════════════════════════════════
    CERTIFICATIONS
    ══════════════════════════════════════════════════ */
-.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
 .cert-card{
   background:var(--bg-card);border:1px solid rgba(139,92,246,.15);
   border-radius:18px;padding:28px;text-align:center;
@@ -378,6 +392,14 @@ section{position:relative;z-index:1;padding:100px 20px}
 /* ══════════════════════════════════════════════════
    CONTACT
    ══════════════════════════════════════════════════ */
+.contact-group{margin-bottom:36px}
+.contact-group:last-child{margin-bottom:0}
+.contact-group-label{
+  font-family:'Orbitron',sans-serif;font-size:.78rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);
+  margin-bottom:18px;display:flex;align-items:center;gap:12px;
+}
+.contact-group-label::after{content:'';flex:1;height:1px;background:rgba(0,240,255,.15)}
 .contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px}
 .contact-card{
   background:var(--bg-card);border:1px solid rgba(0,240,255,.1);
@@ -465,7 +487,8 @@ footer .gradient-text{
   .timeline::before{left:20px}
   .timeline-item,.timeline-item:nth-child(even){width:100%;margin-left:0;padding-left:50px;justify-content:flex-start}
   .timeline-item:nth-child(odd) .timeline-dot,.timeline-item:nth-child(even) .timeline-dot{left:-8px;right:auto}
-  .projects-grid{grid-template-columns:1fr}
+  .projects-grid{flex-direction:column;align-items:stretch}
+  .project-card-wrapper{max-width:100%}
   .cursor-dot,.cursor-ring{display:none}
 }
 </style>
@@ -499,7 +522,7 @@ footer .gradient-text{
 <!-- ═══════════════════ HERO ═══════════════════ -->
 <section class="hero" id="hero">
   <div class="hero-content">
-    <div class="hero-badge">🚀 Open to Opportunities</div>
+    <div class="hero-badge">🚀 Open to Work • Nashik, Maharashtra</div>
     <h1>Hi, I'm <span class="gradient-text">Tushar Datir</span></h1>
     <p class="tagline">
       <span>Java Full-Stack Developer</span> crafting scalable, production-grade applications <br>with clean architecture &amp; innovative solutions
@@ -527,17 +550,20 @@ footer .gradient-text{
       <div class="about-3d-wrapper reveal-left">
         <div class="about-card" id="aboutCard">
           <p>
-            Backend-focused <b>Java Developer</b> specializing in scalable system design.
-            Creator of the enterprise-grade <b>AR Visionary Menu</b> platform and builder
-            of production-ready applications including SMTP Projects and enterprise management systems.
+            Java Full Stack Developer with hands-on experience building scalable web applications using
+            <b>Java</b>, <b>Spring Boot</b>, <b>React</b>, <b>MySQL</b>, and <b>REST APIs</b>. Creator of the
+            enterprise-grade <b>AR Visionary Menu</b> platform and builder of production-ready applications
+            including an E-Commerce platform, an On-Road Rescue Assistance system, and SMTP automation tools.
           </p>
           <p>
-            Strong in <b>Spring Boot</b>, <b>REST APIs</b>, <b>MySQL</b>, and <b>Data Structures</b>.
-            Passionate about writing clean, maintainable code and solving complex engineering challenges.
+            Strong understanding of <b>backend architecture</b>, database design, authentication, and frontend
+            integration — with hands-on experience developing production-ready applications during internship
+            and academic projects.
           </p>
           <p>
-            Currently pursuing <b>B.E. in Computer Engineering</b> from Savitribai Phule Pune University,
-            always eager to learn and apply cutting-edge technologies.
+            Currently completing <b>B.E. in Computer Engineering</b> from Brahma Valley College of Engineering
+            and Research Institute (Savitribai Phule Pune University), always eager to learn and apply
+            cutting-edge technologies.
           </p>
         </div>
       </div>
@@ -547,12 +573,12 @@ footer .gradient-text{
           <div class="stat-label">Months Experience</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number" data-count="15">0</div>
-          <div class="stat-label">Technologies</div>
+          <div class="stat-number" data-count="4">0</div>
+          <div class="stat-label">Major Projects</div>
         </div>
         <div class="stat-box">
-          <div class="stat-number" data-count="3">0</div>
-          <div class="stat-label">Communication Languages</div>
+          <div class="stat-number" data-count="18">0</div>
+          <div class="stat-label">Technologies</div>
         </div>
       </div>
     </div>
@@ -568,39 +594,19 @@ footer .gradient-text{
       <div class="section-line"></div>
     </div>
     <div class="skills-grid">
-      <!-- Backend -->
+      <!-- Languages & Frameworks -->
       <div class="skill-category reveal">
-        <div class="skill-cat-title"><span class="icon">⚙️</span> Backend Development</div>
+        <div class="skill-cat-title"><span class="icon">⚙️</span> Languages & Frameworks</div>
         <div class="skill-item">
           <div class="skill-item-header"><span class="skill-name">Java</span><span class="skill-pct">90%</span></div>
           <div class="skill-bar"><div class="skill-bar-fill" data-width="90"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-item-header"><span class="skill-name">Spring Boot</span><span class="skill-pct">85%</span></div>
+          <div class="skill-item-header"><span class="skill-name">Spring Boot / Spring MVC</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-item-header"><span class="skill-name">REST APIs</span><span class="skill-pct">88%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="88"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-item-header"><span class="skill-name">JWT & Security</span><span class="skill-pct">75%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="75"></div></div>
-        </div>
-      </div>
-      <!-- Frontend -->
-      <div class="skill-category reveal">
-        <div class="skill-cat-title"><span class="icon">🎨</span> Frontend Development</div>
-        <div class="skill-item">
-          <div class="skill-item-header"><span class="skill-name">React</span><span class="skill-pct">78%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-item-header"><span class="skill-name">JavaScript</span><span class="skill-pct">82%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="82"></div></div>
-        </div>
-        <div class="skill-item">
-          <div class="skill-item-header"><span class="skill-name">HTML & CSS</span><span class="skill-pct">85%</span></div>
+          <div class="skill-item-header"><span class="skill-name">SQL</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
         </div>
         <div class="skill-item">
@@ -608,24 +614,58 @@ footer .gradient-text{
           <div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div>
         </div>
       </div>
-      <!-- Database & Tools -->
+      <!-- Frontend & Backend -->
       <div class="skill-category reveal">
-        <div class="skill-cat-title"><span class="icon">🗄️</span> Database & Tools</div>
+        <div class="skill-cat-title"><span class="icon">🎨</span> Frontend & Backend</div>
+        <div class="skill-item">
+          <div class="skill-item-header"><span class="skill-name">React</span><span class="skill-pct">78%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-header"><span class="skill-name">JavaScript / HTML / CSS</span><span class="skill-pct">82%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="82"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-header"><span class="skill-name">REST APIs & MVC Architecture</span><span class="skill-pct">88%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="88"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-header"><span class="skill-name">JWT Authentication</span><span class="skill-pct">78%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div>
+        </div>
+      </div>
+      <!-- Databases & Tools -->
+      <div class="skill-category reveal">
+        <div class="skill-cat-title"><span class="icon">🗄️</span> Databases & Tools</div>
         <div class="skill-item">
           <div class="skill-item-header"><span class="skill-name">MySQL</span><span class="skill-pct">85%</span></div>
           <div class="skill-bar"><div class="skill-bar-fill" data-width="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-item-header"><span class="skill-name">PostgreSQL</span><span class="skill-pct">72%</span></div>
+          <div class="skill-bar"><div class="skill-bar-fill" data-width="72"></div></div>
         </div>
         <div class="skill-item">
           <div class="skill-item-header"><span class="skill-name">SQLite</span><span class="skill-pct">72%</span></div>
           <div class="skill-bar"><div class="skill-bar-fill" data-width="72"></div></div>
         </div>
         <div class="skill-item">
-          <div class="skill-item-header"><span class="skill-name">Git & GitHub</span><span class="skill-pct">80%</span></div>
+          <div class="skill-item-header"><span class="skill-name">Git, GitHub & Maven</span><span class="skill-pct">80%</span></div>
           <div class="skill-bar"><div class="skill-bar-fill" data-width="80"></div></div>
         </div>
-        <div class="skill-item">
-          <div class="skill-item-header"><span class="skill-name">Maven</span><span class="skill-pct">78%</span></div>
-          <div class="skill-bar"><div class="skill-bar-fill" data-width="78"></div></div>
+      </div>
+      <!-- Concepts & Tooling -->
+      <div class="skill-category reveal">
+        <div class="skill-cat-title"><span class="icon">🧠</span> Concepts & Tooling</div>
+        <div class="skill-tags">
+          <span>OOP</span>
+          <span>DSA</span>
+          <span>MVC</span>
+          <span>Database Design</span>
+          <span>API Development</span>
+          <span>Postman</span>
+          <span>VS Code</span>
+          <span>IntelliJ IDEA</span>
         </div>
       </div>
     </div>
@@ -646,11 +686,13 @@ footer .gradient-text{
           <div class="timeline-dot"></div>
           <h3>A2Z IT HUB PVT. LTD.</h3>
           <div class="role">Software Developer Intern</div>
-          <div class="date">📅 Feb 2025 – July 2025</div>
+          <div class="date">📅 Feb 2025 – Jul 2025</div>
           <ul>
-            <li>Enhanced enterprise-grade Java Swing SMTP dashboard with automation and analytics.</li>
-            <li>Engineered scalable Dairy Management System using Spring Boot and MySQL.</li>
-            <li>Designed REST APIs, service layers, repositories, and optimized database schemas.</li>
+            <li>Developed backend modules using Java, Spring Boot, and MySQL following layered architecture.</li>
+            <li>Designed relational database tables and optimized SQL queries for better application performance.</li>
+            <li>Built and tested REST APIs while collaborating with frontend developers.</li>
+            <li>Worked on debugging, API integration, Git version control, and software maintenance.</li>
+            <li>Contributed to Java Swing desktop applications and backend feature enhancements.</li>
           </ul>
         </div>
       </div>
@@ -675,7 +717,7 @@ footer .gradient-text{
               <div class="project-icon">🥽</div>
               <h3>AR Visionary Menu</h3>
               <div class="project-subtitle">AR SaaS Restaurant Platform</div>
-              <p>Architected a SaaS-based AR restaurant system enabling 3D food visualization for mobile browsers with multi-tenant architecture.</p>
+              <p>Developed a SaaS-based restaurant platform with AR-based 3D food visualization and an admin dashboard for restaurant onboarding.</p>
             </div>
             <div class="project-tech">
               <span>Spring Boot</span><span>React</span><span>MySQL</span><span>AR</span><span>Cloudflare CDN</span>
@@ -685,14 +727,69 @@ footer .gradient-text{
           <div class="project-back">
             <h3>Key Highlights</h3>
             <ul>
-              <li>Executed multi-tenant architecture with isolated restaurant data.</li>
-              <li>Built AR-based 3D food visualization for mobile browsers.</li>
-              <li>Expanded real-time Order Management and KDS modules.</li>
-              <li>Applied Cloudflare CDN for rapid 3D asset delivery.</li>
+              <li>Built REST APIs for menu, restaurant, customer, and order management.</li>
+              <li>Implemented AR-based 3D food visualization and Cloudflare asset storage.</li>
+              <li>Designed admin dashboard with restaurant onboarding and management features.</li>
             </ul>
             <div class="project-links">
               <a href="https://www.arvisionary.app" target="_blank">🔗 Live Site</a>
               <a href="https://drive.google.com/file/d/1WIh9jP1I860IFu0qMWMaAMx0fAWoZvWl/view?usp=drive_link" target="_blank">📄 Docs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- E-Commerce Platform -->
+      <div class="project-card-wrapper reveal">
+        <div class="project-card" onclick="this.classList.toggle('flipped')">
+          <div class="project-front">
+            <div>
+              <div class="project-icon">🛒</div>
+              <h3>E-Commerce Platform</h3>
+              <div class="project-subtitle">Full-Stack Shopping Platform</div>
+              <p>Built a full-stack e-commerce application with authentication, catalog, cart, wishlist, and secure order management.</p>
+            </div>
+            <div class="project-tech">
+              <span>Java</span><span>Spring Boot</span><span>React</span><span>MySQL</span><span>JWT</span>
+            </div>
+            <div class="flip-hint">Click to flip →</div>
+          </div>
+          <div class="project-back">
+            <h3>Key Highlights</h3>
+            <ul>
+              <li>Implemented JWT authentication, role-based access control, product catalog, cart, wishlist, and order management.</li>
+              <li>Integrated a secure payment gateway and email notifications for order confirmation.</li>
+              <li>Designed RESTful APIs with pagination, filtering, search, and optimized SQL queries for high performance.</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Tushar-Datir" target="_blank">🔗 View Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- On-Road Rescue Assistance -->
+      <div class="project-card-wrapper reveal">
+        <div class="project-card" onclick="this.classList.toggle('flipped')">
+          <div class="project-front">
+            <div>
+              <div class="project-icon">🚨</div>
+              <h3>On-Road Rescue Assistance</h3>
+              <div class="project-subtitle">Emergency Assistance Platform</div>
+              <p>A full-stack platform connecting stranded users with nearby service providers for fuel delivery, towing, and emergency help.</p>
+            </div>
+            <div class="project-tech">
+              <span>Java</span><span>Spring Boot</span><span>React</span><span>MySQL</span><span>REST API</span>
+            </div>
+            <div class="flip-hint">Click to flip →</div>
+          </div>
+          <div class="project-back">
+            <h3>Key Highlights</h3>
+            <ul>
+              <li>Implemented petrol/diesel delivery, mechanic assistance, towing, ambulance, and nearby hospital support services.</li>
+              <li>Built location-based service requests, authentication, provider management, and real-time request tracking via REST APIs.</li>
+              <li>Designed a scalable backend with role-based access for customers, service providers, and administrators.</li>
+            </ul>
+            <div class="project-links">
+              <a href="https://github.com/Tushar-Datir" target="_blank">🔗 View Code</a>
             </div>
           </div>
         </div>
@@ -703,9 +800,9 @@ footer .gradient-text{
           <div class="project-front">
             <div>
               <div class="project-icon">📧</div>
-              <h3>SMTP Project</h3>
+              <h3>SMTP Email Automation</h3>
               <div class="project-subtitle">Java Swing Desktop Application</div>
-              <p>Created a desktop-based email sending tool with logging, reporting, keyboard shortcuts and workflow automation.</p>
+              <p>A desktop-based bulk email automation tool with logging, reporting, keyboard shortcuts and email templates.</p>
             </div>
             <div class="project-tech">
               <span>Java</span><span>Java Swing</span><span>SMTP</span><span>SQLite</span>
@@ -715,17 +812,17 @@ footer .gradient-text{
           <div class="project-back">
             <h3>Key Highlights</h3>
             <ul>
-              <li>Desktop-based email sending tool with comprehensive logging.</li>
-              <li>Enforced keyboard shortcuts and workflow automation.</li>
-              <li>Built reporting and analytics features for email tracking.</li>
+              <li>Developed a Java Swing desktop application for bulk email automation.</li>
+              <li>Implemented reporting, keyboard shortcuts, email templates, and logging features.</li>
+              <li>Improved workflow efficiency through automation and a user-friendly interface.</li>
             </ul>
             <div class="project-links">
-              <a href="#" target="_blank">🔗 View Code</a>
+              <a href="https://github.com/Tushar-Datir" target="_blank">🔗 View Code</a>
             </div>
           </div>
         </div>
       </div>
-      <!-- Dairy Management -->
+      <!-- Dairy Management System -->
       <div class="project-card-wrapper reveal">
         <div class="project-card" onclick="this.classList.toggle('flipped')">
           <div class="project-front">
@@ -733,7 +830,7 @@ footer .gradient-text{
               <div class="project-icon">🐄</div>
               <h3>Dairy Management System</h3>
               <div class="project-subtitle">Spring Boot & MySQL</div>
-              <p>Designed a full CRUD system with authentication, role-based modules, RESTful APIs and responsive web interfaces.</p>
+              <p>A full CRUD system with authentication, role-based modules, RESTful APIs and a responsive web interface.</p>
             </div>
             <div class="project-tech">
               <span>Spring Boot</span><span>MySQL</span><span>REST API</span><span>JWT</span>
@@ -743,12 +840,12 @@ footer .gradient-text{
           <div class="project-back">
             <h3>Key Highlights</h3>
             <ul>
-              <li>Full CRUD system with authentication and role-based access.</li>
-              <li>Built RESTful APIs and responsive web interfaces.</li>
-              <li>Implemented role-based module access control.</li>
+              <li>Built a full CRUD system with authentication and role-based access control.</li>
+              <li>Designed RESTful APIs and a responsive web interface for daily operations.</li>
+              <li>Implemented module-level access control for different staff roles.</li>
             </ul>
             <div class="project-links">
-              <a href="#" target="_blank">🔗 View Code</a>
+              <a href="https://github.com/Tushar-Datir" target="_blank">🔗 View Code</a>
             </div>
           </div>
         </div>
@@ -767,19 +864,22 @@ footer .gradient-text{
     </div>
     <div class="edu-grid">
       <div class="edu-card reveal">
-        <div class="year">🎓 2026</div>
-        <h3>Bachelor of Engineering</h3>
-        <p>Computer Engineering — Savitribai Phule Pune University</p>
+        <div class="year">🎓 2022 – 2026</div>
+        <h3>Bachelor of Engineering, Computer Engineering</h3>
+        <p>Brahma Valley College of Engineering and Research Institute<br>Savitribai Phule Pune University</p>
+        <span class="cgpa">CGPA: 6.74</span>
       </div>
       <div class="edu-card reveal">
         <div class="year">📜 2022</div>
-        <h3>HSC (Higher Secondary Certificate)</h3>
-        <p>Maharashtra State Board</p>
+        <h3>Higher Secondary Certificate (12th)</h3>
+        <p>Savitribai Phule Pune University</p>
+        <span class="cgpa">Percentage: 53.83%</span>
       </div>
       <div class="edu-card reveal">
         <div class="year">📜 2020</div>
-        <h3>SSC (Secondary School Certificate)</h3>
-        <p>Maharashtra State Board</p>
+        <h3>Secondary School Certificate (10th)</h3>
+        <p>Savitribai Phule Pune University</p>
+        <span class="cgpa">Percentage: 84.8%</span>
       </div>
     </div>
   </div>
@@ -796,13 +896,23 @@ footer .gradient-text{
     <div class="cert-grid">
       <div class="cert-card reveal">
         <div class="cert-icon">☕</div>
-        <h3>Java Core + Advanced</h3>
+        <h3>Java Programming (Core + Advanced)</h3>
         <p>Disha Computers</p>
       </div>
       <div class="cert-card reveal">
         <div class="cert-icon">🔍</div>
-        <h3>Participation Certificate (SEO)</h3>
-        <p>Pankaj Kumar SEO</p>
+        <h3>Search Engine Optimization (SEO)</h3>
+        <p>Participation Certificate — Pankaj Kumar</p>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">☁️</div>
+        <h3>Microsoft Azure</h3>
+        <p>LinkedIn Learning</p>
+      </div>
+      <div class="cert-card reveal">
+        <div class="cert-icon">❄️</div>
+        <h3>Data Engineering Professional Certificate</h3>
+        <p>Snowflake</p>
       </div>
     </div>
   </div>
@@ -816,33 +926,62 @@ footer .gradient-text{
       <p>Let's build something incredible together</p>
       <div class="section-line"></div>
     </div>
-    <div class="contact-grid">
-      <a href="tel:7620998338" style="text-decoration:none;color:inherit">
+    <div class="contact-group">
+      <div class="contact-group-label reveal">Direct Contact</div>
+      <div class="contact-grid">
+        <a href="mailto:tusharvdatir1022@gmail.com" style="text-decoration:none;color:inherit">
+          <div class="contact-card reveal">
+            <div class="contact-icon">📧</div>
+            <h3>Email</h3>
+            <p>tusharvdatir1022@gmail.com</p>
+          </div>
+        </a>
+        <a href="tel:7620998338" style="text-decoration:none;color:inherit">
+          <div class="contact-card reveal">
+            <div class="contact-icon">📞</div>
+            <h3>Phone</h3>
+            <p>+91-7620998338</p>
+          </div>
+        </a>
         <div class="contact-card reveal">
-          <div class="contact-icon">📞</div>
-          <h3>Phone</h3>
-          <p>7620998338</p>
+          <div class="contact-icon">📍</div>
+          <h3>Location</h3>
+          <p>Nashik, Maharashtra</p>
         </div>
-      </a>
-      <a href="mailto:tusharvdatir1022@gmail.com" style="text-decoration:none;color:inherit">
-        <div class="contact-card reveal">
-          <div class="contact-icon">📧</div>
-          <h3>Email</h3>
-          <p>tusharvdatir1022@gmail.com</p>
-        </div>
-      </a>
-      <div class="contact-card reveal">
-        <div class="contact-icon">📍</div>
-        <h3>Location</h3>
-        <p>Nashik, Maharashtra</p>
       </div>
-      <a href="https://leetcode.com/u/Datir_Tushar/" target="_blank" style="text-decoration:none;color:inherit">
-        <div class="contact-card reveal">
-          <div class="contact-icon">🧩</div>
-          <h3>LeetCode</h3>
-          <p>Datir_Tushar</p>
-        </div>
-      </a>
+    </div>
+    <div class="contact-group">
+      <div class="contact-group-label reveal">Find Me Online</div>
+      <div class="contact-grid">
+        <a href="https://www.linkedin.com/in/tushar-datir-85487a337/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="contact-card reveal">
+            <div class="contact-icon">💼</div>
+            <h3>LinkedIn</h3>
+            <p>tushar-datir-85487a337</p>
+          </div>
+        </a>
+        <a href="https://github.com/Tushar-Datir" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="contact-card reveal">
+            <div class="contact-icon">🐙</div>
+            <h3>GitHub</h3>
+            <p>Tushar-Datir</p>
+          </div>
+        </a>
+        <a href="https://tushar-datir.netlify.app" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="contact-card reveal">
+            <div class="contact-icon">🌐</div>
+            <h3>Portfolio</h3>
+            <p>tushar-datir.netlify.app</p>
+          </div>
+        </a>
+        <a href="https://leetcode.com/u/DatirTushar/" target="_blank" style="text-decoration:none;color:inherit">
+          <div class="contact-card reveal">
+            <div class="contact-icon">🧩</div>
+            <h3>LeetCode</h3>
+            <p>DatirTushar</p>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -896,6 +1035,7 @@ footer .gradient-text{
       if(this.x < 0 || this.x > w) this.vx *= -1;
       if(this.y < 0 || this.y > h) this.vy *= -1;
       if(this.z < 0 || this.z > 200) this.vz *= -1;
+      this.z = Math.min(200, Math.max(0, this.z));
 
       // Mouse interaction — subtle attraction
       const dx = mouse.x - this.x;
@@ -907,8 +1047,8 @@ footer .gradient-text{
       }
     }
     draw(){
-      const scale = (200 - this.z) / 200;
-      const r = this.radius * scale;
+      const scale = Math.min(1, Math.max(0, (200 - this.z) / 200));
+      const r = Math.max(0.1, this.radius * scale);
       const alpha = 0.3 + scale * 0.5;
       ctx.beginPath();
       ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
