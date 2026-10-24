@@ -1,1346 +1,523 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tushar Datir - Software Engineer, Python Developer and AI/ML Engineer portfolio.">
-  <meta name="keywords" content="Tushar Datir, Python Developer, AI ML Engineer, Java, Spring Boot, FastAPI, React">
-  <meta name="author" content="Tushar Datir">
-  <title>Tushar Datir | Software Engineer | Python & AI/ML</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg: #07111f;
-      --bg-soft: #0b1728;
-      --card: rgba(13, 28, 48, 0.78);
-      --card-solid: #0d1c30;
-      --text: #edf5ff;
-      --muted: #9cafc4;
-      --line: rgba(148, 180, 214, 0.14);
-      --primary: #42a5ff;
-      --primary-2: #78c4ff;
-      --accent: #25d0b2;
-      --shadow: 0 24px 70px rgba(0, 0, 0, .28);
-      --radius: 20px;
-      --max: 1120px;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: Inter, sans-serif;
-      background:
-        radial-gradient(circle at 85% 8%, rgba(66,165,255,.12), transparent 28%),
-        radial-gradient(circle at 8% 35%, rgba(37,208,178,.07), transparent 24%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    button { font: inherit; }
-    ::selection { background: rgba(66,165,255,.35); color: white; }
-
-    .container { width: min(var(--max), calc(100% - 40px)); margin: auto; }
-
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 1000;
-      background: rgba(7,17,31,.76);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid transparent;
-      transition: .25s ease;
-    }
-    .navbar.scrolled { border-color: var(--line); background: rgba(7,17,31,.94); }
-    .nav-inner {
-      height: 72px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .brand {
-      font-family: "JetBrains Mono", monospace;
-      font-weight: 600;
-      color: var(--text);
-      letter-spacing: -.03em;
-    }
-    .brand span { color: var(--primary); }
-    .nav-links { display: flex; gap: 26px; list-style: none; }
-    .nav-links a {
-      color: var(--muted);
-      font-size: .9rem;
-      font-weight: 500;
-      transition: .2s;
-    }
-    .nav-links a:hover { color: var(--text); }
-    .nav-cta {
-      padding: 9px 15px;
-      border: 1px solid rgba(66,165,255,.35);
-      border-radius: 10px;
-      color: var(--primary) !important;
-    }
-    .menu-btn {
-      display: none;
-      border: 1px solid var(--line);
-      background: transparent;
-      color: var(--text);
-      border-radius: 10px;
-      padding: 8px 10px;
-      cursor: pointer;
-    }
-
-    /* HERO */
-    .hero {
-      min-height: 94vh;
-      display: grid;
-      place-items: center;
-      padding: 130px 0 80px;
-      position: relative;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 70px;
-      align-items: center;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--primary-2);
-      font-family: "JetBrains Mono", monospace;
-      font-size: .82rem;
-      margin-bottom: 18px;
-    }
-    .eyebrow::before {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--primary);
-    }
-    h1 {
-      font-size: clamp(2.7rem, 7vw, 5.2rem);
-      line-height: 1.02;
-      letter-spacing: -.055em;
-      margin-bottom: 22px;
-    }
-    h1 .accent { color: var(--primary); }
-    .hero h2 {
-      font-size: clamp(1.15rem, 2.4vw, 1.55rem);
-      font-weight: 500;
-      color: var(--muted);
-      margin-bottom: 22px;
-    }
-    .hero-copy {
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 1.02rem;
-      margin-bottom: 30px;
-    }
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 12px 18px;
-      border-radius: 11px;
-      border: 1px solid var(--line);
-      font-weight: 600;
-      font-size: .9rem;
-      transition: transform .2s, border-color .2s, background .2s;
-    }
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      background: var(--primary);
-      color: #06101d;
-      border-color: var(--primary);
-    }
-    .btn-secondary { background: rgba(255,255,255,.025); color: var(--text); }
-    .btn-secondary:hover { border-color: rgba(66,165,255,.4); }
-
-    .hero-card {
-      background: linear-gradient(145deg, rgba(18,39,65,.86), rgba(8,20,36,.72));
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-    .hero-card::before {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: rgba(66,165,255,.11);
-      filter: blur(15px);
-      top: -80px;
-      right: -60px;
-    }
-    .code-label {
-      color: var(--accent);
-      font: 600 .76rem "JetBrains Mono", monospace;
-      margin-bottom: 18px;
-    }
-    .code-line {
-      font: 500 .9rem/2 "JetBrains Mono", monospace;
-      color: #c9d8e9;
-    }
-    .code-line .key { color: #78c4ff; }
-    .code-line .value { color: #8ee6cf; }
-    .code-line .comment { color: #6f849a; }
-
-    /* COMMON */
-    section { padding: 95px 0; }
-    .section-head { margin-bottom: 42px; }
-    .section-kicker {
-      color: var(--primary);
-      font: 600 .78rem "JetBrains Mono", monospace;
-      text-transform: uppercase;
-      letter-spacing: .13em;
-      margin-bottom: 8px;
-    }
-    .section-title {
-      font-size: clamp(1.9rem, 4vw, 2.8rem);
-      letter-spacing: -.04em;
-      margin-bottom: 10px;
-    }
-    .section-desc { color: var(--muted); max-width: 680px; }
-
-    /* ABOUT */
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 28px;
-    }
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 30px;
-      box-shadow: 0 15px 45px rgba(0,0,0,.16);
-    }
-    .panel p { color: var(--muted); margin-bottom: 16px; }
-    .panel p:last-child { margin-bottom: 0; }
-    .highlight { color: var(--text); font-weight: 600; }
-    .focus-list { display: grid; gap: 13px; }
-    .focus-item {
-      padding: 15px 16px;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: rgba(255,255,255,.02);
-    }
-    .focus-item strong { display: block; margin-bottom: 3px; }
-    .focus-item span { color: var(--muted); font-size: .88rem; }
-
-    /* SKILLS */
-    .skill-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-    }
-    .skill-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 17px;
-      padding: 24px;
-    }
-    .skill-card h3 { font-size: 1rem; margin-bottom: 15px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip {
-      padding: 7px 10px;
-      border-radius: 9px;
-      background: rgba(66,165,255,.07);
-      border: 1px solid rgba(66,165,255,.14);
-      color: #cfe5fa;
-      font-size: .8rem;
-    }
-
-    /* EXPERIENCE */
-    .timeline { position: relative; }
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 9px;
-      top: 8px;
-      bottom: 8px;
-      width: 1px;
-      background: linear-gradient(var(--primary), rgba(66,165,255,.05));
-    }
-    .experience-item {
-      position: relative;
-      padding-left: 38px;
-      margin-bottom: 32px;
-    }
-    .experience-item:last-child { margin-bottom: 0; }
-    .dot {
-      position: absolute;
-      left: 3px;
-      top: 8px;
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 0 5px rgba(66,165,255,.1);
-    }
-    .experience-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 28px;
-    }
-    .experience-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 16px;
-    }
-    .experience-top h3 { font-size: 1.1rem; }
-    .role { color: var(--primary-2); font-weight: 600; font-size: .9rem; }
-    .date { color: var(--muted); font-size: .82rem; white-space: nowrap; }
-    .experience-card ul { padding-left: 18px; color: var(--muted); }
-    .experience-card li { margin: 7px 0; }
-
-    /* PROJECTS */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-    .project {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 25px;
-      display: flex;
-      flex-direction: column;
-      min-height: 315px;
-      transition: transform .25s, border-color .25s, box-shadow .25s;
-    }
-    .project:hover {
-      transform: translateY(-5px);
-      border-color: rgba(66,165,255,.3);
-      box-shadow: 0 18px 45px rgba(0,0,0,.2);
-    }
-    .project-label {
-      color: var(--primary);
-      font: 600 .72rem "JetBrains Mono", monospace;
-      margin-bottom: 15px;
-    }
-    .project h3 { font-size: 1.05rem; margin-bottom: 8px; }
-    .project p { color: var(--muted); font-size: .88rem; margin-bottom: 18px; }
-    .project .chips { margin-top: auto; }
-    .project-footer {
-      margin-top: 18px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .project-link {
-      font-size: .8rem;
-      color: var(--primary-2);
-      font-weight: 600;
-    }
-
-    /* EDUCATION & CERTIFICATIONS */
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-    .edu-card, .cert-card {
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 26px;
-    }
-    .edu-card + .edu-card, .cert-card + .cert-card { margin-top: 14px; }
-    .meta {
-      color: var(--primary);
-      font: 600 .75rem "JetBrains Mono", monospace;
-      margin-bottom: 9px;
-    }
-    .edu-card h3, .cert-card h3 { font-size: 1rem; margin-bottom: 6px; }
-    .edu-card p, .cert-card p { color: var(--muted); font-size: .87rem; }
-    .coursework { margin-top: 15px; }
-    .coursework strong { color: var(--text); font-size: .83rem; }
-    .coursework span { color: var(--muted); font-size: .82rem; }
-
-
-
-    /* BALANCED CORE STACK */
-    .core-stack {
-      position: relative;
-      overflow: hidden;
-    }
-    .core-stack::before {
-      content: "";
-      position: absolute;
-      inset: 0 0 auto 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--primary), transparent);
-      opacity: .75;
-    }
-    .python-stack::before {
-      background: linear-gradient(90deg, var(--accent), transparent);
-    }
-    .stack-heading {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 15px;
-    }
-    .stack-heading h3 { margin-bottom: 0; }
-    .stack-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--primary);
-      box-shadow: 0 0 0 5px rgba(66,165,255,.08);
-    }
-    .python-stack .stack-dot {
-      background: var(--accent);
-      box-shadow: 0 0 0 5px rgba(37,208,178,.08);
-    }
-    .java-stack,
-    .python-stack {
-      min-height: 152px;
-    }
-
-    /* EDUCATION */
-    .education-layout {
-      display: grid;
-      grid-template-columns: 1.55fr .65fr;
-      gap: 28px;
-      align-items: start;
-    }
-    .education-timeline {
-      position: relative;
-      padding-left: 12px;
-    }
-    .education-timeline::before {
-      content: "";
-      position: absolute;
-      left: 25px;
-      top: 16px;
-      bottom: 16px;
-      width: 1px;
-      background: linear-gradient(var(--primary), rgba(66,165,255,.05));
-    }
-    .education-item {
-      position: relative;
-      padding-left: 58px;
-      margin-bottom: 18px;
-    }
-    .education-item:last-child { margin-bottom: 0; }
-    .education-marker {
-      position: absolute;
-      left: 0;
-      top: 24px;
-      width: 50px;
-      height: 50px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: #0d2138;
-      border: 1px solid rgba(66,165,255,.25);
-      color: var(--primary-2);
-      font: 600 .72rem "JetBrains Mono", monospace;
-      z-index: 2;
-      box-shadow: 0 0 0 7px var(--bg);
-    }
-    .education-card {
-      background: linear-gradient(145deg, rgba(15,35,58,.9), rgba(10,24,41,.72));
-      border: 1px solid var(--line);
-      border-radius: 19px;
-      padding: 25px;
-      transition: transform .25s, border-color .25s, box-shadow .25s;
-    }
-    .education-card:hover {
-      transform: translateX(4px);
-      border-color: rgba(66,165,255,.3);
-      box-shadow: 0 18px 45px rgba(0,0,0,.18);
-    }
-    .education-card.compact {
-      display: grid;
-      grid-template-columns: 110px 1fr auto;
-      align-items: center;
-      gap: 15px;
-      padding: 20px 24px;
-    }
-    .education-date {
-      color: var(--primary);
-      font: 600 .73rem "JetBrains Mono", monospace;
-      letter-spacing: .03em;
-      margin-bottom: 8px;
-    }
-    .education-card.compact .education-date { margin: 0; }
-    .education-degree {
-      color: #c9ddf1;
-      font-size: .82rem;
-      font-weight: 600;
-    }
-    .education-card h3 {
-      font-size: 1.18rem;
-      margin: 3px 0 8px;
-      letter-spacing: -.02em;
-    }
-    .education-school {
-      color: var(--text);
-      font-size: .9rem;
-      margin-bottom: 3px;
-    }
-    .education-university {
-      color: var(--muted);
-      font-size: .82rem;
-    }
-    .education-score {
-      color: var(--accent);
-      font: 700 1.1rem "JetBrains Mono", monospace;
-      white-space: nowrap;
-    }
-    .details-toggle {
-      margin-top: 19px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border: 0;
-      border-top: 1px solid var(--line);
-      padding: 15px 0 0;
-      background: transparent;
-      color: var(--primary-2);
-      cursor: pointer;
-      font-size: .82rem;
-      font-weight: 600;
-    }
-    .details-toggle span {
-      font-size: 1.15rem;
-      transition: transform .25s;
-    }
-    .details-toggle[aria-expanded="true"] span { transform: rotate(45deg); }
-    .education-details {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height .35s ease, margin-top .35s ease;
-    }
-    .education-details.open {
-      max-height: 180px;
-      margin-top: 15px;
-    }
-    .coursework-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-    }
-    .coursework-chips span {
-      padding: 6px 9px;
-      border-radius: 8px;
-      background: rgba(37,208,178,.055);
-      border: 1px solid rgba(37,208,178,.13);
-      color: #bde7de;
-      font-size: .74rem;
-    }
-    .education-summary {
-      position: sticky;
-      top: 100px;
-      padding: 30px;
-      border-radius: 22px;
-      border: 1px solid rgba(66,165,255,.17);
-      background:
-        radial-gradient(circle at 100% 0, rgba(66,165,255,.12), transparent 38%),
-        linear-gradient(145deg, rgba(15,35,58,.9), rgba(8,20,35,.8));
-      overflow: hidden;
-    }
-    .summary-icon {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: rgba(66,165,255,.1);
-      border: 1px solid rgba(66,165,255,.2);
-      color: var(--primary);
-      font: 700 1.2rem "JetBrains Mono", monospace;
-      margin-bottom: 25px;
-    }
-    .summary-label {
-      color: var(--primary);
-      font: 600 .7rem "JetBrains Mono", monospace;
-      letter-spacing: .13em;
-    }
-    .education-summary h3 {
-      font-size: 1.3rem;
-      line-height: 1.3;
-      margin: 11px 0;
-      letter-spacing: -.025em;
-    }
-    .education-summary p {
-      color: var(--muted);
-      font-size: .84rem;
-    }
-    .summary-line {
-      height: 1px;
-      background: var(--line);
-      margin: 25px 0 19px;
-    }
-    .summary-stat {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-    }
-    .summary-stat strong {
-      color: var(--text);
-      font: 600 .9rem "JetBrains Mono", monospace;
-    }
-    .summary-stat span { color: var(--muted); font-size: .78rem; }
-
-    /* CERTIFICATIONS */
-    .certifications-section {
-      background: linear-gradient(180deg, rgba(10,25,42,.34), rgba(7,17,31,0));
-      border-top: 1px solid rgba(148,180,214,.05);
-      border-bottom: 1px solid rgba(148,180,214,.05);
-    }
-    .certification-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-    .certification-card {
-      position: relative;
-      min-height: 290px;
-      display: flex;
-      flex-direction: column;
-      padding: 27px;
-      border-radius: 20px;
-      background: rgba(13,28,48,.78);
-      border: 1px solid var(--line);
-      overflow: hidden;
-      transition: transform .25s, border-color .25s, box-shadow .25s;
-    }
-    .certification-card::after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      right: -100px;
-      bottom: -110px;
-      border-radius: 50%;
-      background: rgba(66,165,255,.09);
-      filter: blur(2px);
-      transition: .3s;
-    }
-    .certification-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(66,165,255,.35);
-      box-shadow: 0 22px 55px rgba(0,0,0,.22);
-    }
-    .certification-card:hover::after {
-      transform: scale(1.35);
-      background: rgba(66,165,255,.15);
-    }
-    .certification-card.featured {
-      border-color: rgba(66,165,255,.28);
-      background:
-        linear-gradient(145deg, rgba(17,42,70,.94), rgba(10,25,43,.82));
-    }
-    .cert-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 23px;
-    }
-    .cert-logo {
-      width: 48px;
-      height: 48px;
-      display: grid;
-      place-items: center;
-      border-radius: 13px;
-      background: linear-gradient(145deg, #173a5f, #0c223a);
-      border: 1px solid rgba(66,165,255,.23);
-      color: var(--primary-2);
-      font: 800 1rem "JetBrains Mono", monospace;
-    }
-    .cert-logo.java { color: #ffb16e; border-color: rgba(255,177,110,.2); }
-    .cert-logo.cloud { color: #86d4ff; border-color: rgba(134,212,255,.2); }
-    .cert-logo.seo { color: #a8eadf; border-color: rgba(168,234,223,.2); }
-    .cert-status {
-      padding: 6px 8px;
-      border-radius: 8px;
-      background: rgba(66,165,255,.07);
-      color: var(--primary-2);
-      font: 600 .63rem "JetBrains Mono", monospace;
-      letter-spacing: .08em;
-    }
-    .cert-provider {
-      color: var(--primary);
-      font: 600 .71rem "JetBrains Mono", monospace;
-      letter-spacing: .06em;
-      margin-bottom: 8px;
-    }
-    .certification-card h3 {
-      font-size: 1.2rem;
-      line-height: 1.3;
-      margin-bottom: 10px;
-      letter-spacing: -.025em;
-    }
-    .certification-card p {
-      color: var(--muted);
-      font-size: .84rem;
-      line-height: 1.65;
-    }
-    .cert-skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 17px;
-    }
-    .cert-skills span {
-      padding: 5px 8px;
-      border-radius: 7px;
-      background: rgba(255,255,255,.025);
-      border: 1px solid var(--line);
-      color: #bfd3e7;
-      font-size: .7rem;
-    }
-    .cert-footer {
-      margin-top: auto;
-      padding-top: 19px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: #71869b;
-      font-size: .72rem;
-    }
-    .cert-arrow {
-      color: var(--primary);
-      font-size: 1rem;
-      transition: transform .2s;
-    }
-    .certification-card:hover .cert-arrow { transform: translate(3px, -3px); }
-
-    /* CONTACT */
-    .contact {
-      display: grid;
-      grid-template-columns: 1fr .8fr;
-      gap: 24px;
-    }
-    .contact-card {
-      background: linear-gradient(145deg, rgba(18,39,65,.86), rgba(8,20,36,.72));
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 32px;
-    }
-    .contact-card h3 { font-size: 1.35rem; margin-bottom: 10px; }
-    .contact-card p { color: var(--muted); margin-bottom: 22px; }
-    .contact-list { display: grid; gap: 11px; }
-    .contact-link {
-      padding: 12px 14px;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      color: #cfe0f2;
-      font-size: .88rem;
-      transition: .2s;
-    }
-    .contact-link:hover { border-color: rgba(66,165,255,.4); color: var(--primary-2); }
-    .availability {
-      border: 1px solid rgba(37,208,178,.18);
-      background: rgba(37,208,178,.05);
-      color: #b9eadf;
-      border-radius: 14px;
-      padding: 16px;
-      font-size: .87rem;
-      margin-top: 18px;
-    }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 30px 0;
-      color: var(--muted);
-      font-size: .82rem;
-      text-align: center;
-    }
-
-    /* REVEAL */
-    .reveal { opacity: 0; transform: translateY(18px); transition: .65s ease; }
-    .reveal.show { opacity: 1; transform: translateY(0); }
-
-
-    @media (max-width: 900px) {
-      .education-layout { grid-template-columns: 1fr; }
-      .education-summary { position: static; }
-    }
-
-    /* RESPONSIVE */
-    @media (max-width: 900px) {
-      .hero-grid, .about-grid, .contact, .two-col { grid-template-columns: 1fr; }
-      .hero-card { max-width: 680px; }
-      .project-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 720px) {
-      .container { width: min(var(--max), calc(100% - 28px)); }
-      section { padding: 72px 0; }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 72px;
-        left: 0;
-        right: 0;
-        padding: 22px;
-        flex-direction: column;
-        background: rgba(7,17,31,.98);
-        border-bottom: 1px solid var(--line);
-      }
-      .nav-links.open { display: flex; }
-      .menu-btn { display: block; }
-      .nav-cta { display: none; }
-      .hero { min-height: auto; padding-top: 120px; }
-      .skill-grid, .project-grid { grid-template-columns: 1fr; }
-      .experience-top { flex-direction: column; gap: 5px; }
-      .date { white-space: normal; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tushar Datir - Software Developer skilled in Java, Spring Boot, React, MySQL and REST APIs.">
+<meta name="keywords" content="Tushar Datir, Software Developer, Java, Spring Boot, React, MySQL, REST APIs, FastAPI, Python">
+<meta name="author" content="Tushar Datir">
+<title>Tushar Datir | Software Developer | Java, Spring Boot & React</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07111f;--card:rgba(13,28,48,.78);--text:#edf5ff;--muted:#9cafc4;--line:rgba(148,180,214,.14);--primary:#42a5ff;--primary-2:#78c4ff;--accent:#25d0b2;--shadow:0 24px 70px rgba(0,0,0,.28);--radius:20px;--max:1120px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,sans-serif;background:radial-gradient(circle at 85% 8%,rgba(66,165,255,.12),transparent 28%),radial-gradient(circle at 8% 35%,rgba(37,208,178,.07),transparent 24%),var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:rgba(66,165,255,.35);color:#fff}
+.container{width:min(var(--max),calc(100% - 40px));margin:auto}
+.navbar{position:fixed;inset:0 0 auto 0;z-index:1000;background:rgba(7,17,31,.76);backdrop-filter:blur(18px);border-bottom:1px solid transparent;transition:.25s ease}
+.navbar.scrolled{border-color:var(--line);background:rgba(7,17,31,.94)}
+.nav-inner{height:72px;display:flex;align-items:center;justify-content:space-between}
+.brand{font-family:"JetBrains Mono",monospace;font-weight:600;letter-spacing:-.03em}
+.brand span{color:var(--primary)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--muted);font-size:.9rem;font-weight:500;transition:.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{padding:9px 15px;border:1px solid rgba(66,165,255,.35);border-radius:10px;color:var(--primary)!important}
+.menu-btn{display:none;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:10px;padding:8px 10px;cursor:pointer}
+.hero{min-height:94vh;display:grid;place-items:center;padding:130px 0 80px}
+.hero-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:70px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--primary-2);font-family:"JetBrains Mono",monospace;font-size:.82rem;margin-bottom:18px}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--primary)}
+h1{font-size:clamp(2.7rem,7vw,5.2rem);line-height:1.02;letter-spacing:-.055em;margin-bottom:22px}
+h1 .accent{color:var(--primary)}
+.hero h2{font-size:clamp(1.15rem,2.4vw,1.55rem);font-weight:500;color:var(--muted);margin-bottom:22px}
+.hero-copy{max-width:680px;color:var(--muted);font-size:1.02rem;margin-bottom:30px}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:11px;border:1px solid var(--line);font-weight:600;font-size:.9rem;transition:transform .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:var(--primary);color:#06101d;border-color:var(--primary)}
+.btn-secondary{background:rgba(255,255,255,.025);color:var(--text)}
+.btn-secondary:hover{border-color:rgba(66,165,255,.4)}
+.hero-card{background:linear-gradient(145deg,rgba(18,39,65,.86),rgba(8,20,36,.72));border:1px solid var(--line);border-radius:26px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.hero-card::before{content:"";position:absolute;width:180px;height:180px;border-radius:50%;background:rgba(66,165,255,.11);filter:blur(15px);top:-80px;right:-60px}
+.code-label{color:var(--accent);font:600 .76rem "JetBrains Mono",monospace;margin-bottom:18px}
+.code-line{font:500 .9rem/2 "JetBrains Mono",monospace;color:#c9d8e9}
+.code-line .key{color:#78c4ff}.code-line .value{color:#8ee6cf}.code-line .comment{color:#6f849a}
+section{padding:95px 0}
+.section-head{margin-bottom:42px}
+.section-kicker{color:var(--primary);font:600 .78rem "JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.13em;margin-bottom:8px}
+.section-title{font-size:clamp(1.9rem,4vw,2.8rem);letter-spacing:-.04em;margin-bottom:10px}
+.section-desc{color:var(--muted);max-width:680px}
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:0 15px 45px rgba(0,0,0,.16)}
+.panel p{color:var(--muted);margin-bottom:16px}.panel p:last-child{margin-bottom:0}
+.highlight{color:var(--text);font-weight:600}
+.focus-list{display:grid;gap:13px}
+.focus-item{padding:15px 16px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.02)}
+.focus-item strong{display:block;margin-bottom:3px}
+.focus-item span{color:var(--muted);font-size:.88rem}
+.skill-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.skill-card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:24px}
+.skill-card h3{font-size:1rem;margin-bottom:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:7px 10px;border-radius:9px;background:rgba(66,165,255,.07);border:1px solid rgba(66,165,255,.14);color:#cfe5fa;font-size:.8rem}
+.core-stack{position:relative;overflow:hidden}
+.core-stack::before{content:"";position:absolute;inset:0 0 auto 0;height:2px;background:linear-gradient(90deg,var(--primary),transparent);opacity:.75}
+.python-stack::before{background:linear-gradient(90deg,var(--accent),transparent)}
+.stack-heading{display:flex;align-items:center;gap:10px;margin-bottom:15px}
+.stack-heading h3{margin-bottom:0}
+.stack-dot{width:9px;height:9px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 5px rgba(66,165,255,.08)}
+.python-stack .stack-dot{background:var(--accent);box-shadow:0 0 0 5px rgba(37,208,178,.08)}
+.timeline{position:relative}
+.timeline::before{content:"";position:absolute;left:9px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--primary),rgba(66,165,255,.05))}
+.experience-item{position:relative;padding-left:38px;margin-bottom:32px}
+.experience-item:last-child{margin-bottom:0}
+.dot{position:absolute;left:3px;top:8px;width:13px;height:13px;border-radius:50%;background:var(--primary);box-shadow:0 0 0 5px rgba(66,165,255,.1)}
+.experience-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.experience-top{display:flex;justify-content:space-between;gap:20px;margin-bottom:16px}
+.experience-top h3{font-size:1.1rem}
+.role{color:var(--primary-2);font-weight:600;font-size:.9rem}
+.date{color:var(--muted);font-size:.82rem;white-space:nowrap}
+.experience-card ul{padding-left:18px;color:var(--muted)}
+.experience-card li{margin:7px 0}
+.project-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:25px;display:flex;flex-direction:column;min-height:315px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.project:hover{transform:translateY(-5px);border-color:rgba(66,165,255,.3);box-shadow:0 18px 45px rgba(0,0,0,.2)}
+.project-label{color:var(--primary);font:600 .72rem "JetBrains Mono",monospace;margin-bottom:15px}
+.project h3{font-size:1.05rem;margin-bottom:8px}
+.project p{color:var(--muted);font-size:.88rem;margin-bottom:18px}
+.project .chips{margin-top:auto}
+.project-footer{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.project-link{font-size:.8rem;color:var(--primary-2);font-weight:600}
+.education-layout{display:grid;grid-template-columns:1.55fr .65fr;gap:28px;align-items:start}
+.education-timeline{position:relative;padding-left:12px}
+.education-timeline::before{content:"";position:absolute;left:25px;top:16px;bottom:16px;width:1px;background:linear-gradient(var(--primary),rgba(66,165,255,.05))}
+.education-item{position:relative;padding-left:58px;margin-bottom:18px}
+.education-item:last-child{margin-bottom:0}
+.education-marker{position:absolute;left:0;top:24px;width:50px;height:50px;display:grid;place-items:center;border-radius:14px;background:#0d2138;border:1px solid rgba(66,165,255,.25);color:var(--primary-2);font:600 .72rem "JetBrains Mono",monospace;z-index:2;box-shadow:0 0 0 7px var(--bg)}
+.education-card{background:linear-gradient(145deg,rgba(15,35,58,.9),rgba(10,24,41,.72));border:1px solid var(--line);border-radius:19px;padding:25px;transition:transform .25s,border-color .25s,box-shadow .25s}
+.education-card:hover{transform:translateX(4px);border-color:rgba(66,165,255,.3);box-shadow:0 18px 45px rgba(0,0,0,.18)}
+.education-card.compact{display:grid;grid-template-columns:110px 1fr auto;align-items:center;gap:15px;padding:20px 24px}
+.education-date{color:var(--primary);font:600 .73rem "JetBrains Mono",monospace;letter-spacing:.03em;margin-bottom:8px}
+.education-card.compact .education-date{margin:0}
+.education-degree{color:#c9ddf1;font-size:.82rem;font-weight:600}
+.education-card h3{font-size:1.18rem;margin:3px 0 8px;letter-spacing:-.02em}
+.education-school{color:var(--text);font-size:.9rem;margin-bottom:3px}
+.education-university{color:var(--muted);font-size:.82rem}
+.education-score{color:var(--accent);font:700 1.1rem "JetBrains Mono",monospace;white-space:nowrap}
+.details-toggle{margin-top:19px;width:100%;display:flex;align-items:center;justify-content:space-between;border:0;border-top:1px solid var(--line);padding:15px 0 0;background:transparent;color:var(--primary-2);cursor:pointer;font-size:.82rem;font-weight:600}
+.details-toggle span{font-size:1.15rem;transition:transform .25s}
+.details-toggle[aria-expanded="true"] span{transform:rotate(45deg)}
+.education-details{max-height:0;overflow:hidden;transition:max-height .35s ease,margin-top .35s ease}
+.education-details.open{max-height:180px;margin-top:15px}
+.coursework-chips{display:flex;flex-wrap:wrap;gap:7px}
+.coursework-chips span{padding:6px 9px;border-radius:8px;background:rgba(37,208,178,.055);border:1px solid rgba(37,208,178,.13);color:#bde7de;font-size:.74rem}
+.education-summary{position:sticky;top:100px;padding:30px;border-radius:22px;border:1px solid rgba(66,165,255,.17);background:radial-gradient(circle at 100% 0,rgba(66,165,255,.12),transparent 38%),linear-gradient(145deg,rgba(15,35,58,.9),rgba(8,20,35,.8));overflow:hidden}
+.summary-icon{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:rgba(66,165,255,.1);border:1px solid rgba(66,165,255,.2);color:var(--primary);font:700 1.2rem "JetBrains Mono",monospace;margin-bottom:25px}
+.summary-label{color:var(--primary);font:600 .7rem "JetBrains Mono",monospace;letter-spacing:.13em}
+.education-summary h3{font-size:1.3rem;line-height:1.3;margin:11px 0;letter-spacing:-.025em}
+.education-summary p{color:var(--muted);font-size:.84rem}
+.summary-line{height:1px;background:var(--line);margin:25px 0 19px}
+.summary-stat{display:flex;justify-content:space-between;padding:8px 0}
+.summary-stat strong{font:600 .9rem "JetBrains Mono",monospace}
+.summary-stat span{color:var(--muted);font-size:.78rem}
+.certifications-section{background:linear-gradient(180deg,rgba(10,25,42,.34),rgba(7,17,31,0));border-top:1px solid rgba(148,180,214,.05);border-bottom:1px solid rgba(148,180,214,.05)}
+.certification-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.certification-card{position:relative;min-height:290px;display:flex;flex-direction:column;padding:27px;border-radius:20px;background:rgba(13,28,48,.78);border:1px solid var(--line);overflow:hidden;transition:transform .25s,border-color .25s,box-shadow .25s}
+.certification-card::after{content:"";position:absolute;width:180px;height:180px;right:-100px;bottom:-110px;border-radius:50%;background:rgba(66,165,255,.09);transition:.3s}
+.certification-card:hover{transform:translateY(-6px);border-color:rgba(66,165,255,.35);box-shadow:0 22px 55px rgba(0,0,0,.22)}
+.certification-card:hover::after{transform:scale(1.35);background:rgba(66,165,255,.15)}
+.certification-card.featured{border-color:rgba(66,165,255,.28);background:linear-gradient(145deg,rgba(17,42,70,.94),rgba(10,25,43,.82))}
+.cert-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:23px}
+.cert-logo{width:48px;height:48px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#173a5f,#0c223a);border:1px solid rgba(66,165,255,.23);color:var(--primary-2);font:800 1rem "JetBrains Mono",monospace}
+.cert-logo.cloud{color:#86d4ff;border-color:rgba(134,212,255,.2)}
+.cert-logo.snow{color:#a8eadf;border-color:rgba(168,234,223,.2)}
+.cert-status{padding:6px 8px;border-radius:8px;background:rgba(66,165,255,.07);color:var(--primary-2);font:600 .63rem "JetBrains Mono",monospace;letter-spacing:.08em}
+.cert-provider{color:var(--primary);font:600 .71rem "JetBrains Mono",monospace;letter-spacing:.06em;margin-bottom:8px}
+.certification-card h3{font-size:1.2rem;line-height:1.3;margin-bottom:10px;letter-spacing:-.025em}
+.certification-card p{color:var(--muted);font-size:.84rem;line-height:1.65}
+.cert-skills{display:flex;flex-wrap:wrap;gap:7px;margin-top:17px}
+.cert-skills span{padding:5px 8px;border-radius:7px;background:rgba(255,255,255,.025);border:1px solid var(--line);color:#bfd3e7;font-size:.7rem}
+.cert-footer{margin-top:auto;padding-top:19px;display:flex;align-items:center;justify-content:space-between;color:#71869b;font-size:.72rem}
+.cert-arrow{color:var(--primary);font-size:1rem;transition:transform .2s}
+.certification-card:hover .cert-arrow{transform:translate(3px,-3px)}
+.contact{display:grid;grid-template-columns:1fr .8fr;gap:24px}
+.contact-card{background:linear-gradient(145deg,rgba(18,39,65,.86),rgba(8,20,36,.72));border:1px solid var(--line);border-radius:22px;padding:32px}
+.contact-card h3{font-size:1.35rem;margin-bottom:10px}
+.contact-card p{color:var(--muted);margin-bottom:22px}
+.contact-list{display:grid;gap:11px}
+.contact-link{padding:12px 14px;border:1px solid var(--line);border-radius:11px;color:#cfe0f2;font-size:.88rem;transition:.2s}
+.contact-link:hover{border-color:rgba(66,165,255,.4);color:var(--primary-2)}
+.availability{border:1px solid rgba(37,208,178,.18);background:rgba(37,208,178,.05);color:#b9eadf;border-radius:14px;padding:16px;font-size:.87rem;margin-top:18px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.82rem;text-align:center}
+.reveal{opacity:0;transform:translateY(18px);transition:.65s ease}
+.reveal.show{opacity:1;transform:translateY(0)}
+@media(max-width:1000px){.certification-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.hero-grid,.about-grid,.contact,.education-layout{grid-template-columns:1fr}.education-summary{position:static}.hero-card{max-width:680px}.project-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.container{width:min(var(--max),calc(100% - 28px))}section{padding:72px 0}.nav-links{display:none;position:absolute;top:72px;left:0;right:0;padding:22px;flex-direction:column;background:rgba(7,17,31,.98);border-bottom:1px solid var(--line)}.nav-links.open{display:flex}.menu-btn{display:block}.nav-cta{display:none}.hero{min-height:auto;padding-top:120px}.skill-grid,.project-grid,.certification-grid{grid-template-columns:1fr}.experience-top{flex-direction:column;gap:5px}.date{white-space:normal}.education-card.compact{grid-template-columns:1fr;gap:6px}}
+</style>
 </head>
-
 <body>
-  <header class="navbar" id="navbar">
-    <div class="container nav-inner">
-      <a class="brand" href="#home">&lt;<span>TD</span> /&gt;</a>
-      <nav>
-        <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#education">Education</a></li>
-          <li><a href="#certifications">Certifications</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <a class="nav-cta" href="#contact">Let's Connect</a>
-      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a class="brand" href="#home">&lt;<span>TD</span> /&gt;</a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li><li><a href="#projects">Projects</a></li><li><a href="#education">Education</a></li>
+        <li><a href="#certifications">Certifications</a></li><li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="#contact">Let's Connect</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div class="reveal">
+      <div class="eyebrow">SOFTWARE DEVELOPER · JAVA · SPRING BOOT</div>
+      <h1>Tushar <span class="accent">Datir</span></h1>
+      <h2>Software Developer | Java, Spring Boot &amp; React</h2>
+      <p class="hero-copy">Software Developer with hands-on expertise in Java, Spring Boot, React, MySQL and REST APIs. I build backend modules, integrate APIs, design relational databases and ship full-stack applications.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-secondary" href="mailto:tusharvdatir1022@gmail.com">Contact Me</a>
+        <a class="btn btn-secondary" href="https://github.com/Tushar-Datir" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
     </div>
-  </header>
+    <div class="hero-card reveal">
+      <div class="code-label">// current focus</div>
+      <div class="code-line"><span class="key">role</span>: <span class="value">"Software Developer"</span></div>
+      <div class="code-line"><span class="key">backend</span>: <span class="value">["Java", "Spring Boot", "REST APIs"]</span></div>
+      <div class="code-line"><span class="key">frontend</span>: <span class="value">["React"]</span></div>
+      <div class="code-line"><span class="key">python</span>: <span class="value">["Python", "FastAPI"]</span></div>
+      <div class="code-line"><span class="key">databases</span>: <span class="value">["MySQL", "PostgreSQL", "MongoDB"]</span></div>
+      <div class="code-line"><span class="key">devops</span>: <span class="value">["CI/CD", "GitHub Actions"]</span></div>
+      <div class="code-line"><span class="key">mindset</span>: <span class="value">"Build • Learn • Improve"</span></div>
+      <div class="code-line"><span class="comment">// open to opportunities</span></div>
+    </div>
+  </div>
+</section>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <div class="eyebrow">SOFTWARE ENGINEER · JAVA · PYTHON</div>
-          <h1>Tushar <span class="accent">Datir</span></h1>
-          <h2>Software Engineer | Java & Python | Backend & AI/ML</h2>
-          <p class="hero-copy">
-            Computer Engineering graduate focused on building reliable software,
-            backend systems, and practical machine learning solutions using Java,
-            Python, Spring Boot, FastAPI, React, and modern data-science tools.
-          </p>
-          <div class="actions">
-            <a class="btn btn-primary" href="#projects">View Projects</a>
-            <a class="btn btn-secondary" href="mailto:tusharvdatir1022@gmail.com">Contact Me</a>
-            <a class="btn btn-secondary" href="https://github.com/Tushar-Datir" target="_blank" rel="noopener">GitHub ↗</a>
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-kicker">01 / About</div>
+      <h2 class="section-title">Professional Summary</h2>
+      <p class="section-desc">Full-stack software development with a strong backend focus on Java and Spring Boot.</p>
+    </div>
+    <div class="about-grid">
+      <div class="panel reveal">
+        <p>I am a <span class="highlight">Software Developer</span> with professional experience in software development and hands-on expertise in <span class="highlight">Java, Spring Boot, React, MySQL and REST APIs</span>.</p>
+        <p>I have experience developing backend modules, integrating APIs, designing relational databases and building full-stack applications.</p>
+        <p>I have a strong understanding of object-oriented programming, layered architecture, authentication, debugging and software development practices.</p>
+      </div>
+      <div class="focus-list reveal">
+        <div class="focus-item"><strong>Backend Development</strong><span>Java, Spring Boot, Spring MVC, REST APIs and layered architecture.</span></div>
+        <div class="focus-item"><strong>Full-Stack Applications</strong><span>React frontends with Spring Boot APIs, JWT authentication and MySQL.</span></div>
+        <div class="focus-item"><strong>Python &amp; Machine Learning</strong><span>Python, FastAPI, Scikit-learn and PyTorch for data-driven solutions.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-kicker">02 / Skills</div>
+      <h2 class="section-title">Technical Skills</h2>
+      <p class="section-desc">A practical technology stack across backend development, databases, tooling and machine learning.</p>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-card core-stack java-stack reveal">
+        <div class="stack-heading"><span class="stack-dot"></span><h3>Languages</h3></div>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">React</span><span class="chip">SQL</span></div>
+      </div>
+      <div class="skill-card core-stack python-stack reveal">
+        <div class="stack-heading"><span class="stack-dot"></span><h3>Frameworks</h3></div>
+        <div class="chips"><span class="chip">Spring Boot</span><span class="chip">Spring MVC</span><span class="chip">React</span><span class="chip">FastAPI</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Backend</h3>
+        <div class="chips"><span class="chip">REST APIs</span><span class="chip">Backend Development</span><span class="chip">API Integration</span><span class="chip">Microservices Architecture</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Machine Learning</h3>
+        <div class="chips"><span class="chip">Regression</span><span class="chip">Classification</span><span class="chip">Clustering</span><span class="chip">Data Preprocessing</span><span class="chip">Feature Engineering</span><span class="chip">Model Evaluation</span><span class="chip">Neural Networks</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Python &amp; Data Science</h3>
+        <div class="chips"><span class="chip">NumPy</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">Scikit-learn</span><span class="chip">PyTorch</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Databases</h3>
+        <div class="chips"><span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">SQLite</span><span class="chip">SQL &amp; NoSQL</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>Tools</h3>
+        <div class="chips"><span class="chip">Git</span><span class="chip">Maven</span><span class="chip">Postman</span><span class="chip">VS Code</span><span class="chip">IntelliJ IDEA</span></div>
+      </div>
+      <div class="skill-card reveal">
+        <h3>DevOps &amp; Concepts</h3>
+        <div class="chips"><span class="chip">CI/CD</span><span class="chip">GitHub Actions</span><span class="chip">OOP</span><span class="chip">DSA</span><span class="chip">MVC</span><span class="chip">Database Design</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-kicker">03 / Experience</div>
+      <h2 class="section-title">Professional Experience</h2>
+      <p class="section-desc">Hands-on software development experience in professional environments.</p>
+    </div>
+    <div class="timeline">
+      <div class="experience-item reveal">
+        <div class="dot"></div>
+        <div class="experience-card">
+          <div class="experience-top">
+            <div><h3>Rakhson's Technology</h3><div class="role">Software Developer</div></div>
+            <div class="date">Oct 2026 – Present</div>
           </div>
-        </div>
-
-        <div class="hero-card reveal">
-          <div class="code-label">// current focus</div>
-          <div class="code-line"><span class="key">role</span>: <span class="value">"Software Engineer"</span></div>
-          <div class="code-line"><span class="key">java</span>: <span class="value">["Java", "Spring Boot", "REST APIs"]</span></div>
-<div class="code-line"><span class="key">python</span>: <span class="value">["Python", "FastAPI", "Data Science"]</span></div>
-          <div class="code-line"><span class="key">ai_ml</span>: <span class="value">["ML", "Scikit-learn", "PyTorch"]</span></div>
-          <div class="code-line"><span class="key">frontend</span>: <span class="value">["React", "JavaScript"]</span></div>
-          <div class="code-line"><span class="key">databases</span>: <span class="value">["MySQL", "PostgreSQL"]</span></div>
-          <div class="code-line"><span class="key">mindset</span>: <span class="value">"Build • Learn • Improve"</span></div>
-          <div class="code-line"><span class="comment">// open to opportunities</span></div>
+          <ul>
+            <li>Contributing to software development activities, including application development, implementation, debugging and maintenance.</li>
+            <li>Applying programming fundamentals and software development practices to build reliable and maintainable applications.</li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-kicker">01 / About</div>
-          <h2 class="section-title">Professional Profile</h2>
-          <p class="section-desc">A software engineering profile combining Java backend development with Python, data and Machine Learning.</p>
-        </div>
-
-        <div class="about-grid">
-          <div class="panel reveal">
-            <p>
-              I am a <span class="highlight">Computer Engineering graduate</span> with hands-on
-              experience in software development, backend engineering, Python, and Machine Learning.
-            </p>
-            <p>
-              My development experience includes <span class="highlight">Java, Spring Boot, React,
-              REST APIs, MySQL, PostgreSQL, Python, and FastAPI</span>. I also build data-driven
-              solutions using Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, and PyTorch.
-            </p>
-            <p>
-              I enjoy turning practical problems into maintainable software and machine learning
-              solutions, with an emphasis on clean architecture, useful features, and continuous learning.
-            </p>
+      <div class="experience-item reveal">
+        <div class="dot"></div>
+        <div class="experience-card">
+          <div class="experience-top">
+            <div><h3>A2Z IT HUB Pvt. Ltd.</h3><div class="role">Software Developer Intern</div></div>
+            <div class="date">Feb 2025 – Jul 2025</div>
           </div>
-
-          <div class="focus-list reveal">
-            <div class="focus-item">
-              <strong>Java Engineering</strong>
-              <span>Java, Spring Boot, REST APIs, React and database-driven applications.</span>
-            </div>
-            <div class="focus-item">
-              <strong>Python Engineering</strong>
-              <span>Python, FastAPI, SQLAlchemy, PostgreSQL and data-driven applications.</span>
-            </div>
-            <div class="focus-item">
-              <strong>AI & Machine Learning</strong>
-              <span>Data preprocessing, EDA, regression, classification, clustering and model evaluation.</span>
-            </div>
-          </div>
+          <ul>
+            <li>Developed backend modules using Java, Spring Boot, Spring MVC, REST APIs and MySQL following layered architecture.</li>
+            <li>Designed and integrated RESTful APIs using JSON and HTTP/HTTPS for communication between application components.</li>
+            <li>Applied Core Java, OOP, Collections, Exception Handling, Multithreading, Streams, Lambda Expressions and Generics.</li>
+            <li>Designed relational database tables and wrote SQL queries using joins and indexing.</li>
+            <li>Performed debugging, troubleshooting, API testing, Git version control, Maven dependency management and code maintenance.</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <!-- SKILLS -->
-    <section id="skills">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-kicker">02 / Skills</div>
-          <h2 class="section-title">Technical Skills</h2>
-          <p class="section-desc">A practical technology stack across software engineering, backend development and AI/ML.</p>
-        </div>
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-kicker">04 / Projects</div>
+      <h2 class="section-title">Selected Projects</h2>
+      <p class="section-desc">Full-stack, backend, data and AI/ML projects demonstrating practical problem-solving.</p>
+    </div>
+    <div class="project-grid">
+      <article class="project reveal">
+        <div class="project-label">SAAS / AR</div>
+        <h3>AR Visionary Menu</h3>
+        <p>SaaS-based restaurant platform with REST APIs for menu, restaurant, customer and order management, plus an admin dashboard for restaurant management.</p>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span><span class="chip">MySQL</span></div>
+        <div class="project-footer"><a class="project-link" href="https://www.arvisionary.app" target="_blank" rel="noopener">Live Project ↗</a></div>
+      </article>
+      <article class="project reveal">
+        <div class="project-label">FULL-STACK</div>
+        <h3>E-Commerce Platform</h3>
+        <p>Full-stack shopping app with REST APIs for product catalog, cart, wishlist and orders, JWT authentication, role-based access, pagination, filtering, search and SQL query optimizations.</p>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span><span class="chip">MySQL</span><span class="chip">JWT</span></div>
+      </article>
+      <article class="project reveal">
+        <div class="project-label">FULL-STACK</div>
+        <h3>On-Road Rescue Assistance Platform</h3>
+        <p>Full-stack emergency assistance platform with APIs for service requests, service provider management and request tracking, with role-based access for different users.</p>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span><span class="chip">MySQL</span></div>
+      </article>
+      <article class="project reveal">
+        <div class="project-label">DESKTOP AUTOMATION</div>
+        <h3>SMTP Email Automation</h3>
+        <p>Java Swing desktop application for bulk email automation, including email templates, reporting and logging.</p>
+        <div class="chips"><span class="chip">Java</span><span class="chip">Java Swing</span><span class="chip">SMTP</span><span class="chip">SQLite</span></div>
+      </article>
+      <article class="project reveal">
+        <div class="project-label">AI / OCR</div>
+        <h3>Aadhaar OCR Information Extraction</h3>
+        <p>OCR-based document processing system that extracts structured information from Aadhaar images using image preprocessing and OCR techniques.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">Tesseract OCR</span><span class="chip">FastAPI</span><span class="chip">PostgreSQL</span></div>
+      </article>
+      <article class="project reveal">
+        <div class="project-label">MACHINE LEARNING</div>
+        <h3>Loan Approval Prediction</h3>
+        <p>Classification solution that predicts loan approval using applicant and financial attributes, with a complete preprocessing, training and evaluation workflow.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Scikit-learn</span></div>
+      </article>
+      <article class="project reveal">
+        <div class="project-label">MACHINE LEARNING</div>
+        <h3>Car Price Prediction</h3>
+        <p>Regression-based model for estimating vehicle prices after data cleaning, exploratory analysis, feature preprocessing and model evaluation.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span><span class="chip">Regression</span></div>
+      </article>
+      <article class="project reveal">
+        <div class="project-label">MACHINE LEARNING</div>
+        <h3>House Price Prediction</h3>
+        <p>Regression project focused on property price prediction, preprocessing, feature preparation and performance evaluation.</p>
+        <div class="chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Scikit-learn</span></div>
+      </article>
+      <article class="project reveal">
+        <div class="project-label">ACADEMIC PROJECT</div>
+        <h3>Image Encryption-Decryption Using DNA CNOT Gate</h3>
+        <p>Academic project applying DNA computing and reversible CNOT-gate concepts to image encryption and decryption.</p>
+        <div class="chips"><span class="chip">DNA Computing</span><span class="chip">CNOT Gate</span><span class="chip">Image Security</span></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-        <div class="skill-grid">
-          <div class="skill-card core-stack java-stack reveal">
-            <div class="stack-heading">
-              <span class="stack-dot"></span>
-              <h3>Java Engineering</h3>
-            </div>
-            <div class="chips">
-              <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">REST APIs</span>
-              <span class="chip">JPA / Hibernate</span><span class="chip">Maven</span><span class="chip">JUnit</span>
-            </div>
-          </div>
-
-          <div class="skill-card core-stack python-stack reveal">
-            <div class="stack-heading">
-              <span class="stack-dot"></span>
-              <h3>Python Engineering</h3>
-            </div>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">Pandas</span>
-              <span class="chip">NumPy</span><span class="chip">Scikit-learn</span><span class="chip">PyTorch</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <h3>Languages</h3>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">Java</span><span class="chip">SQL</span>
-              <span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <h3>AI / Machine Learning</h3>
-            <div class="chips">
-              <span class="chip">Machine Learning</span><span class="chip">Regression</span>
-              <span class="chip">Classification</span><span class="chip">Clustering</span>
-              <span class="chip">Feature Engineering</span><span class="chip">Model Evaluation</span>
-              <span class="chip">Neural Networks</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <h3>Python & Data Science</h3>
-            <div class="chips">
-              <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Scikit-learn</span>
-              <span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">PyTorch</span>
-              <span class="chip">Jupyter</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <h3>Backend & Web</h3>
-            <div class="chips">
-              <span class="chip">Spring Boot</span><span class="chip">FastAPI</span><span class="chip">REST APIs</span>
-              <span class="chip">React</span><span class="chip">SQLAlchemy</span><span class="chip">JWT</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <h3>Databases</h3>
-            <div class="chips">
-              <span class="chip">MySQL</span><span class="chip">PostgreSQL</span><span class="chip">SQLite</span>
-              <span class="chip">Database Design</span>
-            </div>
-          </div>
-
-          <div class="skill-card reveal">
-            <h3>Tools & Practices</h3>
-            <div class="chips">
-              <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">Postman</span>
-              <span class="chip">VS Code</span><span class="chip">IntelliJ IDEA</span><span class="chip">Maven</span>
-              <span class="chip">OOP</span><span class="chip">DSA</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-kicker">03 / Experience</div>
-          <h2 class="section-title">Professional Experience</h2>
-          <p class="section-desc">Hands-on software development experience in a professional environment.</p>
-        </div>
-
-        <div class="timeline">
-          <div class="experience-item reveal">
-            <div class="dot"></div>
-            <div class="experience-card">
-              <div class="experience-top">
-                <div>
-                  <h3>A2Z IT HUB PVT. LTD.</h3>
-                  <div class="role">Software Developer Intern</div>
-                </div>
-                <div class="date">Feb 2025 – Jul 2025</div>
-              </div>
-              <ul>
-                <li>Developed backend modules using Java, Spring Boot and MySQL following layered architecture.</li>
-                <li>Designed relational database tables and implemented application business logic.</li>
-                <li>Built and tested REST APIs and collaborated on frontend-backend integration.</li>
-                <li>Worked on debugging, API testing, Git version control and software maintenance.</li>
-                <li>Contributed to Java Swing applications including email automation, templates and reporting.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-kicker">04 / Projects</div>
-          <h2 class="section-title">Selected Projects</h2>
-          <p class="section-desc">Selected work demonstrating software engineering, backend development, data and AI/ML problem-solving.</p>
-        </div>
-
-        <div class="project-grid">
-          <article class="project reveal">
-            <div class="project-label">AI / OCR</div>
-            <h3>Aadhaar OCR Information Extraction</h3>
-            <p>OCR-based document processing system that extracts structured information from Aadhaar images using image preprocessing and OCR techniques.</p>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">OpenCV</span><span class="chip">Tesseract OCR</span>
-              <span class="chip">FastAPI</span><span class="chip">PostgreSQL</span>
-            </div>
-          </article>
-
-          <article class="project reveal">
-            <div class="project-label">MACHINE LEARNING</div>
-            <h3>Loan Approval Prediction</h3>
-            <p>Classification solution that predicts loan approval using applicant and financial attributes with a complete preprocessing, training and evaluation workflow.</p>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
-              <span class="chip">Scikit-learn</span><span class="chip">EDA</span>
-            </div>
-          </article>
-
-          <article class="project reveal">
-            <div class="project-label">MACHINE LEARNING</div>
-            <h3>Car Price Prediction</h3>
-            <p>Regression-based model for estimating vehicle prices after data cleaning, exploratory analysis, feature preprocessing and model evaluation.</p>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Scikit-learn</span>
-              <span class="chip">Regression</span>
-            </div>
-          </article>
-
-          <article class="project reveal">
-            <div class="project-label">MACHINE LEARNING</div>
-            <h3>House Price Prediction</h3>
-            <p>Machine learning regression project focused on property price prediction, preprocessing, feature preparation and performance evaluation.</p>
-            <div class="chips">
-              <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
-              <span class="chip">Scikit-learn</span>
-            </div>
-          </article>
-
-          <article class="project reveal">
-            <div class="project-label">SOFTWARE / AR</div>
-            <h3>AR Visionary Menu</h3>
-            <p>SaaS restaurant platform with menu management, restaurant administration and AR-based 3D food visualization.</p>
-            <div class="chips">
-              <span class="chip">Spring Boot</span><span class="chip">React</span><span class="chip">MySQL</span>
-              <span class="chip">REST APIs</span><span class="chip">AR</span>
-            </div>
-            <div class="project-footer">
-              <a class="project-link" href="https://www.arvisionary.app" target="_blank" rel="noopener">Live Project ↗</a>
-            </div>
-          </article>
-
-          <article class="project reveal">
-            <div class="project-label">ACADEMIC PROJECT</div>
-            <h3>Image Encryption-Decryption Using DNA CNOT Gate</h3>
-            <p>Academic project applying DNA computing and reversible CNOT-gate concepts to image encryption and decryption.</p>
-            <div class="chips">
-              <span class="chip">DNA Computing</span><span class="chip">CNOT Gate</span>
-              <span class="chip">Image Security</span>
-            </div>
-          </article>
-
-          <article class="project reveal">
-            <div class="project-label">FULL-STACK</div>
-            <h3>E-Commerce Platform</h3>
-            <p>Full-stack shopping application with authentication, product catalog, cart, wishlist, orders and role-based access control.</p>
-            <div class="chips">
-              <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span>
-              <span class="chip">MySQL</span><span class="chip">JWT</span>
-            </div>
-          </article>
-
-          <article class="project reveal">
-            <div class="project-label">DESKTOP AUTOMATION</div>
-            <h3>SMTP Email Automation</h3>
-            <p>Java Swing desktop application for bulk email automation with templates, reporting, logging and productivity-focused features.</p>
-            <div class="chips">
-              <span class="chip">Java</span><span class="chip">Java Swing</span><span class="chip">SMTP</span>
-              <span class="chip">SQLite</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section id="education">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-kicker">05 / Education</div>
-          <h2 class="section-title">Education</h2>
-          <p class="section-desc">Academic foundation in Computer Engineering, software development, databases and AI/ML.</p>
-        </div>
-
-        <div class="education-layout">
-          <div class="education-timeline">
-            <div class="education-item reveal">
-              <div class="education-marker">01</div>
-              <div class="education-card">
-                <div class="education-date">2022 — 2026</div>
-                <div class="education-degree">Bachelor of Engineering</div>
-                <h3>Computer Engineering</h3>
-                <p class="education-school">Brahma Valley College of Engineering and Research Institute</p>
-                <span class="education-university">Savitribai Phule Pune University</span>
-
-                <button class="details-toggle" type="button" aria-expanded="false">
-                  View relevant coursework <span>+</span>
-                </button>
-                <div class="education-details">
-                  <div class="coursework-chips">
-                    <span>Machine Learning</span><span>Artificial Intelligence</span>
-                    <span>Data Structures & Algorithms</span><span>DBMS</span>
-                    <span>Object-Oriented Programming</span><span>Computer Networks</span>
-                    <span>Operating Systems</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="education-item reveal">
-              <div class="education-marker">02</div>
-              <div class="education-card compact">
-                <div class="education-date">2022</div>
-                <div class="education-degree">Higher Secondary Certificate</div>
-                <h3>12th Standard</h3>
-                <div class="education-score">53.83%</div>
-              </div>
-            </div>
-
-            <div class="education-item reveal">
-              <div class="education-marker">03</div>
-              <div class="education-card compact">
-                <div class="education-date">2020</div>
-                <div class="education-degree">Secondary School Certificate</div>
-                <h3>10th Standard</h3>
-                <div class="education-score">84.8%</div>
+<!-- EDUCATION -->
+<section id="education">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-kicker">05 / Education</div>
+      <h2 class="section-title">Education</h2>
+      <p class="section-desc">Academic foundation in Computer Engineering, software development, databases and AI/ML.</p>
+    </div>
+    <div class="education-layout">
+      <div class="education-timeline">
+        <div class="education-item reveal">
+          <div class="education-marker">01</div>
+          <div class="education-card">
+            <div class="education-date">2022 — 2026</div>
+            <div class="education-degree">Bachelor of Engineering</div>
+            <h3>Computer Engineering</h3>
+            <p class="education-school">Brahma Valley College of Engineering and Research Institute</p>
+            <span class="education-university">Savitribai Phule Pune University</span>
+            <button class="details-toggle" type="button" aria-expanded="false">View relevant coursework <span>+</span></button>
+            <div class="education-details">
+              <div class="coursework-chips">
+                <span>Machine Learning</span><span>Artificial Intelligence</span><span>Data Structures &amp; Algorithms</span>
+                <span>DBMS</span><span>OOP</span><span>Computer Networks</span><span>Operating Systems</span>
               </div>
             </div>
           </div>
-
-          <aside class="education-summary reveal">
-            <div class="summary-icon">⌘</div>
-            <span class="summary-label">ACADEMIC FOCUS</span>
-            <h3>Building strong engineering fundamentals.</h3>
-            <p>Combining software engineering principles with practical Python, data science and machine learning projects.</p>
-            <div class="summary-line"></div>
-            <div class="summary-stat"><strong>2026</strong><span>Graduate</span></div>
-            <div class="summary-stat"><strong>BE</strong><span>Computer Engineering</span></div>
-          </aside>
         </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section id="certifications" class="certifications-section">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-kicker">06 / Certifications</div>
-          <h2 class="section-title">Professional Certifications</h2>
-          <p class="section-desc">Credentials that complement my software engineering and AI/ML skill set.</p>
-        </div>
-
-        <div class="certification-grid">
-          <article class="certification-card featured reveal">
-            <div class="cert-top">
-              <div class="cert-logo">DC</div>
-              <span class="cert-status">AI / DATA</span>
-            </div>
-            <div class="cert-provider">DATACAMP · 2026</div>
-            <h3>AI Engineer for Data Scientists Associate</h3>
-            <p>Certification covering AI/data-science engineering competencies across programming, data management, exploratory analysis, model development and production concepts.</p>
-            <div class="cert-skills">
-              <span>Python</span><span>AI</span><span>Machine Learning</span><span>Data Science</span>
-            </div>
-            <div class="cert-footer">
-              <span>Professional Credential</span>
-              <span class="cert-arrow">↗</span>
-            </div>
-          </article>
-
-          <article class="certification-card reveal">
-            <div class="cert-top">
-              <div class="cert-logo java">J</div>
-              <span class="cert-status">PROGRAMMING</span>
-            </div>
-            <div class="cert-provider">DISHA COMPUTERS</div>
-            <h3>Java Programming</h3>
-            <p>Training credential focused on Core and Advanced Java programming concepts and application development.</p>
-            <div class="cert-skills">
-              <span>Java</span><span>OOP</span><span>Programming</span>
-            </div>
-            <div class="cert-footer">
-              <span>Technical Certification</span>
-              <span class="cert-arrow">↗</span>
-            </div>
-          </article>
-
-          <article class="certification-card reveal">
-            <div class="cert-top">
-              <div class="cert-logo cloud">AZ</div>
-              <span class="cert-status">CLOUD</span>
-            </div>
-            <div class="cert-provider">MICROSOFT AZURE</div>
-            <h3>Azure Learning</h3>
-            <p>Additional cloud learning credential supporting broader software and cloud technology knowledge.</p>
-            <div class="cert-skills">
-              <span>Azure</span><span>Cloud</span>
-            </div>
-            <div class="cert-footer">
-              <span>Additional Learning</span>
-              <span class="cert-arrow">↗</span>
-            </div>
-          </article>
-
-          <article class="certification-card reveal">
-            <div class="cert-top">
-              <div class="cert-logo seo">S</div>
-              <span class="cert-status">PARTICIPATION</span>
-            </div>
-            <div class="cert-provider">ADDITIONAL</div>
-            <h3>SEO Participation</h3>
-            <p>Participation credential reflecting additional exposure to digital technology and web-related concepts.</p>
-            <div class="cert-skills">
-              <span>SEO</span><span>Web</span>
-            </div>
-            <div class="cert-footer">
-              <span>Participation Credential</span>
-              <span class="cert-arrow">↗</span>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-kicker">06 / Contact</div>
-          <h2 class="section-title">Let's Build Something Useful</h2>
-          <p class="section-desc">Software Engineering · Backend Development · Data · AI/ML</p>
-        </div>
-
-        <div class="contact">
-          <div class="contact-card reveal">
-            <h3>Have an opportunity?</h3>
-            <p>
-              I am interested in roles where I can contribute to software engineering,
-              Python development, backend systems, or practical AI/ML solutions.
-            </p>
-            <a class="btn btn-primary" href="mailto:tusharvdatir1022@gmail.com">Send an Email</a>
-            <div class="availability">● Software Engineering · Java · Python · Backend · AI/ML</div>
+        <div class="education-item reveal">
+          <div class="education-marker">02</div>
+          <div class="education-card compact">
+            <div class="education-date">2022</div>
+            <div><div class="education-degree">Higher Secondary Certificate</div><h3>12th Standard</h3></div>
+            <div class="education-score">53.83%</div>
           </div>
-
-          <div class="contact-list reveal">
-            <a class="contact-link" href="mailto:tusharvdatir1022@gmail.com">✉ tusharvdatir1022@gmail.com</a>
-            <a class="contact-link" href="tel:+917620998338">☎ +91 76209 98338</a>
-            <a class="contact-link" href="https://www.linkedin.com/in/tushar-datir-85487a337/" target="_blank" rel="noopener">in LinkedIn</a>
-            <a class="contact-link" href="https://github.com/Tushar-Datir" target="_blank" rel="noopener">⌘ GitHub</a>
+        </div>
+        <div class="education-item reveal">
+          <div class="education-marker">03</div>
+          <div class="education-card compact">
+            <div class="education-date">2020</div>
+            <div><div class="education-degree">Secondary School Certificate</div><h3>10th Standard</h3></div>
+            <div class="education-score">84.8%</div>
           </div>
         </div>
       </div>
-    </section>
-  </main>
+      <aside class="education-summary reveal">
+        <div class="summary-icon">⌘</div>
+        <span class="summary-label">ACADEMIC FOCUS</span>
+        <h3>Building strong engineering fundamentals.</h3>
+        <p>Combining software engineering principles with practical backend, data science and machine learning projects.</p>
+        <div class="summary-line"></div>
+        <div class="summary-stat"><strong>2026</strong><span>Graduate</span></div>
+        <div class="summary-stat"><strong>BE</strong><span>Computer Engineering</span></div>
+      </aside>
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <div class="container">© 2026 Tushar Datir · Software Engineering · Java · Python · AI/ML</div>
-  </footer>
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="certifications-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-kicker">06 / Certifications</div>
+      <h2 class="section-title">Professional Certifications</h2>
+      <p class="section-desc">Credentials that complement my software development and data skill set.</p>
+    </div>
+    <div class="certification-grid">
+      <article class="certification-card featured reveal">
+        <div class="cert-top"><div class="cert-logo">DC</div><span class="cert-status">AI / DATA</span></div>
+        <div class="cert-provider">DATACAMP · AUGUST 2026</div>
+        <h3>AI Engineer for Data Scientists Associate</h3>
+        <p>Certification covering AI and data-science engineering competencies across programming, data management, exploratory analysis, model development and production concepts.</p>
+        <div class="cert-skills"><span>Python</span><span>AI</span><span>Machine Learning</span><span>Data Science</span></div>
+        <div class="cert-footer"><span>Professional Credential</span><span class="cert-arrow">↗</span></div>
+      </article>
+      <article class="certification-card reveal">
+        <div class="cert-top"><div class="cert-logo cloud">AZ</div><span class="cert-status">CLOUD</span></div>
+        <div class="cert-provider">MICROSOFT</div>
+        <h3>Microsoft Azure</h3>
+        <p>Cloud credential supporting broader software and cloud technology knowledge.</p>
+        <div class="cert-skills"><span>Azure</span><span>Cloud</span></div>
+        <div class="cert-footer"><span>Cloud Certification</span><span class="cert-arrow">↗</span></div>
+      </article>
+      <article class="certification-card reveal">
+        <div class="cert-top"><div class="cert-logo snow">SF</div><span class="cert-status">DATA</span></div>
+        <div class="cert-provider">SNOWFLAKE</div>
+        <h3>Data Engineering Professional</h3>
+        <p>Professional credential focused on data engineering concepts and working with data on the Snowflake platform.</p>
+        <div class="cert-skills"><span>Data Engineering</span><span>Snowflake</span><span>SQL</span></div>
+        <div class="cert-footer"><span>Professional Credential</span><span class="cert-arrow">↗</span></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-  <script>
-    const navbar = document.getElementById("navbar");
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-kicker">07 / Contact</div>
+      <h2 class="section-title">Let's Build Something Useful</h2>
+      <p class="section-desc">Software Development · Backend · Full-Stack · Data</p>
+    </div>
+    <div class="contact">
+      <div class="contact-card reveal">
+        <h3>Have an opportunity?</h3>
+        <p>I am interested in roles where I can contribute to backend development, full-stack applications and practical software solutions using Java, Spring Boot and React.</p>
+        <a class="btn btn-primary" href="mailto:tusharvdatir1022@gmail.com">Send an Email</a>
+        <div class="availability">● Based in Nashik, Maharashtra · Java · Spring Boot · React · MySQL</div>
+      </div>
+      <div class="contact-list reveal">
+        <a class="contact-link" href="mailto:tusharvdatir1022@gmail.com">✉ tusharvdatir1022@gmail.com</a>
+        <a class="contact-link" href="tel:+917620998338">☎ +91 76209 98338</a>
+        <a class="contact-link" href="https://www.linkedin.com/in/tushar-datir-85487a337/" target="_blank" rel="noopener">in LinkedIn</a>
+        <a class="contact-link" href="https://github.com/Tushar-Datir" target="_blank" rel="noopener">⌘ GitHub</a>
+        <a class="contact-link" href="https://leetcode.com/u/Datir_Tushar/" target="_blank" rel="noopener">&lt;/&gt; LeetCode</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
 
-    window.addEventListener("scroll", () => {
-      navbar.classList.toggle("scrolled", window.scrollY > 20);
-    });
+<footer>
+  <div class="container">© 2026 Tushar Datir · Software Developer · Java · Spring Boot · React</div>
+</footer>
 
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
-
-    document.querySelectorAll(".nav-links a").forEach(link => {
-      link.addEventListener("click", () => navLinks.classList.remove("open"));
-    });
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-
-    document.querySelectorAll(".details-toggle").forEach(button => {
-      button.addEventListener("click", () => {
-        const details = button.nextElementSibling;
-        const expanded = button.getAttribute("aria-expanded") === "true";
-        button.setAttribute("aria-expanded", String(!expanded));
-        details.classList.toggle("open", !expanded);
-      });
-    });
-  </script>
+<script>
+const navbar=document.getElementById("navbar"),menuBtn=document.getElementById("menuBtn"),navLinks=document.getElementById("navLinks");
+window.addEventListener("scroll",()=>navbar.classList.toggle("scrolled",window.scrollY>20));
+menuBtn.addEventListener("click",()=>navLinks.classList.toggle("open"));
+document.querySelectorAll(".nav-links a").forEach(l=>l.addEventListener("click",()=>navLinks.classList.remove("open")));
+const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("show");observer.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+document.querySelectorAll(".details-toggle").forEach(b=>b.addEventListener("click",()=>{const d=b.nextElementSibling,x=b.getAttribute("aria-expanded")==="true";b.setAttribute("aria-expanded",String(!x));d.classList.toggle("open",!x)}));
+</script>
 </body>
 </html>
